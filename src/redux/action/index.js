@@ -1,0 +1,1 @@
+export const UNCLE_SEND_MONEY='叔叔给钱啦';

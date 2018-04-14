@@ -26,6 +26,7 @@ module.exports= {
       }
     ]
   },
+  devtool: "source-map",
   plugins: [new HtmlWebpackPlugin({
     title:'my website',
     template: './src/Template/template.html'

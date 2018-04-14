@@ -1,8 +1,21 @@
 import React,{Component} from 'react'
-import Son from '../Son/Son.js'
 import Button from '../Button/button'
+import {UNCLE_SEND_MONEY} from "../../redux/action/index";
+import {connect}  from 'react-redux'
 
-export default class Uncle extends Component{
+const styles={
+  container:{
+    display: 'flex',
+    flexDirection:'column',
+    width:200,
+    height:200,
+    border:'1px solid green',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+}
+
+class Uncle extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -47,24 +60,34 @@ export default class Uncle extends Component{
       <div style={styles.container}>
         <Button
           text="来 叔叔给你钱"
-          onClick={()=>this.setState({
-            money1:2,
-            money2:2,
-        })}/>
+        //   onClick={()=>this.setState({
+        //     money1:2,
+        //     money2:2,
+        // })}
+          onClick={()=>{
+            this.props.sendMoney({money:10})
+          }}
+        />
       </div>
     )
   }
 
 }
 
-const styles={
-  container:{
-    display: 'flex',
-    flexDirection:'column',
-    width:200,
-    height:200,
-    border:'1px solid green',
-    justifyContent: 'center',
-    alignItems: 'center',
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    sendMoney:(opts)=>{
+      dispatch({type:UNCLE_SEND_MONEY,param:opts})
+    }
   }
 }
+
+const mapStateToProps=(state)=>{
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Uncle)
+

@@ -7,7 +7,8 @@ let initState={
 export const UncleReducer = function(state=initState, action){
   switch (action.type) {
     case UNCLE_SEND_MONEY:
-       return Object.assign({},state,{money:action.money})
+       console.log('UNCLE_SEND_MONEY',action)
+       return Object.assign({},state,{money:action.param.money})
     default:
       return state;
   }

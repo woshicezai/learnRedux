@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import SButton from '../Button/button'
 import './son.css'
+import {connect}  from 'react-redux'
 
-export default class Son extends Component{
+
+class Son extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -20,10 +21,16 @@ export default class Son extends Component{
     console.log('Son componentWillReceiveProps',{
       nextProps,
     });
-
+    //dad
     if(this.props.money!==nextProps.money){
       this.setState({
         money:this.state.money+nextProps.money
+      })
+    }
+    //redux
+    if (this.props.uncleMoney !== nextProps.uncleMoney){
+      this.setState({
+        money:this.state.money+nextProps.uncleMoney
       })
     }
   }
@@ -67,3 +74,17 @@ export default class Son extends Component{
   }
 }
 
+const mapDispatchToProps=(dispatch)=>{
+  return{
+
+  }
+}
+
+const mapStateToProps=(state)=>{
+  console.log('son mapStateToProps',state)
+  return {
+    uncleMoney:state.money
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Son)
